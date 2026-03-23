@@ -1,93 +1,64 @@
 # AWS Security Automation Platform
 
+🚀 Enterprise-grade AWS security monitoring and automated response platform built using native AWS services and Terraform.
+
+---
+
+## 🏗️ Architecture
+
+![Architecture](./architecture/architecture.png)
+
+---
+
 ## 📌 Overview
 
-This project implements an **event-driven AWS security automation platform** using Terraform.
+This project simulates a real-world **cloud security operations platform** designed to:
 
-It provides:
+- Continuously monitor AWS activity  
+- Detect threats and misconfigurations  
+- Automatically remediate security risks  
+- Enforce compliance using event-driven automation  
 
-- 🔍 Continuous monitoring  
-- 🚨 Threat detection  
-- 📏 Compliance enforcement  
-- ⚡ Automated remediation  
+---
 
-The platform detects misconfigurations and automatically remediates them using AWS native services such as AWS Config, EventBridge, and Lambda.
+## 🔄 Security Automation Pipeline
 
-## 🏗️ Architecture Diagram
+This platform follows a **detect → analyze → respond → enforce** model:
 
-```text
-                         Internet
-                             │
-                             ▼
-                    AWS Shield (DDoS)
-                             │
-                             ▼
-              Application Load Balancer (ALB)
-                             │
-                             ▼
-                    EC2 Application Layer
-                             │
-        ┌────────────────────┼────────────────────┐
-        │                    │                    │
-        ▼                    ▼                    ▼
- AWS CloudTrail        AWS Inspector        AWS Config
-        │                    │                    │
-        ▼                    ▼                    ▼
-     S3 Logs            Vulnerabilities     Compliance Check
-        │                    │                    │
-        ▼                    ▼                    ▼
-     AWS Macie             (Scan)          Amazon EventBridge
-                                                   │
-                                                   ▼
-                                            AWS Lambda
-                                                   │
-                                                   ▼
-                                        Auto Fix Security Group
+### 1️⃣ Logging & Visibility
+- AWS CloudTrail captures all API activity  
+- AWS Config tracks configuration changes  
+- Logs stored securely in S3  
 
+### 2️⃣ Threat Detection
+- Amazon GuardDuty identifies malicious activity  
+- AWS Security Hub aggregates findings  
+- AWS Inspector scans for vulnerabilities  
+- AWS Macie detects sensitive data exposure  
 
-## ⚙️ How It Works
+### 3️⃣ Event-Driven Response
+- Amazon EventBridge captures security events  
+- AWS Lambda executes automated remediation  
 
-### 1️⃣ Monitoring
-- AWS CloudTrail logs all API activity  
-- Logs are stored securely in S3  
-
-### 2️⃣ Detection
-- AWS Config detects misconfigurations  
-- AWS Inspector identifies vulnerabilities  
-- AWS Macie detects sensitive data  
-
-### 3️⃣ Protection
+### 4️⃣ Protection Layer
 - AWS Shield provides DDoS protection  
-
-### 4️⃣ Automated Remediation
-- AWS Config detects non-compliance  
-- EventBridge captures the event  
-- Lambda is triggered automatically  
-- Lambda remediates the issue  
+- AWS WAF protects application layer  
 
 ---
 
-## 🔥 Example Use Case
+## ⚡ Automated Remediation Example
 
-### 🚨 Problem
+### 🚨 Scenario
+A security group allows public SSH access (0.0.0.0/0).
 
-A security group allows public SSH access:
+### 🔁 Automated Flow
+1. AWS Config detects non-compliance  
+2. EventBridge triggers rule  
+3. Lambda function executes remediation  
+4. Insecure rule is removed  
 
-
----
-
-### ⚡ Automated Flow
-
-- AWS Config detects violation  
-- EventBridge triggers event  
-- Lambda removes insecure rule  
-- Security group becomes compliant  
-
----
-
-### ✅ Result
-
-- Risk removed automatically  
+### ✅ Outcome
+- Risk eliminated automatically  
 - No manual intervention required  
 - Continuous compliance maintained  
 
@@ -95,80 +66,71 @@ A security group allows public SSH access:
 
 ## 🛠️ Technologies Used
 
-- Terraform  
-- AWS Lambda  
-- Amazon EventBridge  
-- AWS Config  
-- AWS CloudTrail  
-- AWS Inspector  
-- AWS Macie  
-- AWS Shield  
+- Terraform (Infrastructure as Code)  
+- AWS Lambda (Automation)  
+- Amazon EventBridge (Event routing)  
+- AWS CloudTrail (Logging)  
+- AWS Config (Compliance monitoring)  
+- Amazon GuardDuty (Threat detection)  
+- AWS Security Hub (Aggregation)  
+- AWS Inspector (Vulnerability scanning)  
+- AWS Macie (Data protection)  
+- AWS WAF & Shield (Application protection)  
 
 ---
 
-## 📸 Screenshots
+## 📸 Key Screenshots
 
-### ☁️ CloudTrail & Config
+### 🔎 Logging & Compliance
 
-![CloudTrail Overview](screenshots/config/01-cloudtrail-overview.png)
-![Event History](screenshots/config/02-cloudtrail-event-history.png)
-![S3 Logs](screenshots/config/03-s3-cloudtrail-logs.png)
-![Bucket Policy](screenshots/config/04-s3-bucket-policy.png)
-![Terraform CloudTrail](screenshots/config/05-terraform-cloudtrail.png)
-![S3 Encryption](screenshots/config/16-s3-encryption.png)
-![AWS Config Dashboard](screenshots/config/aws-config-dashboard.png)
+![CloudTrail Overview](./screenshots/01-config/01-cloudtrail-overview.png)
+![AWS Config Dashboard](./screenshots/01-config/aws-config-dashboard.png)
 
 ---
 
-### 🔍 Detection Layer (GuardDuty + Security Hub)
+### 🚨 Threat Detection
 
-![GuardDuty Enabled](screenshots/detection/08-guardduty-enabled.png)
-![GuardDuty Finding](screenshots/detection/10-guardduty-finding.png)
-![GuardDuty Threat](screenshots/detection/10-guardduty-threat-detection.png)
-![Security Hub Overview](screenshots/detection/09-security-hub-overview.png)
-![Security Hub Finding](screenshots/detection/11-security-hub-finding.png)
+![GuardDuty Finding](./screenshots/02-detection/10-guardduty-finding.png)
+![Security Hub Finding](./screenshots/02-detection/11-security-hub-finding.png)
 
 ---
 
-### ⚡ EventBridge
+### ⚡ Automated Response
 
-![EventBridge Rule](screenshots/eventbridge/eventbridge-rule.png)
-
----
-
-### ⚡ Lambda
-
-![Lambda Remediation](screenshots/lambda/lambda-remediation.png)
+![EventBridge Rule](./screenshots/03-response/eventbridge-rule.png)
+![Lambda Remediation](./screenshots/03-response/lambda-remediation.png)
 
 ---
 
-### 🔍 AWS Inspector
+### 🌐 Protection Layer
 
-![Inspector Findings](screenshots/inspector/aws-inspector-findings.png)
-
----
-
-### 🔐 AWS Macie
-
-![Macie Enabled](screenshots/macie/aws-macie-enabled.png)
+![WAF Protection](./screenshots/waf/14-waf-alb-protection.png)
+![Shield Dashboard](./screenshots/shield/aws-shield-dashboard.png)
 
 ---
 
-### 🛡️ AWS Shield
+## ⭐ Key Features
 
-![Shield Dashboard](screenshots/shield/aws-shield-dashboard.png)
-
----
-
-### 🌐 WAF Protection
-
-![WAF Protection](screenshots/waf/14-waf-alb-protection.png)
-![WAF Rate Limiting](screenshots/waf/14-waf-alb-rate-limiting.png)
+- Fully automated security remediation  
+- Event-driven architecture (serverless)  
+- Centralized security visibility  
+- Scalable and cloud-native design  
+- Infrastructure fully defined in Terraform  
 
 ---
 
-### 🔐 Encryption & Secrets
+## 🚧 Future Enhancements
 
-![EBS Encryption](screenshots/security/17-ebs-encryption-default.png)
-![Secrets Manager](screenshots/security/18-secrets-manager.png)
+- Integrate SIEM (Splunk / ELK / Sentinel)  
+- Add SOAR playbooks for advanced automation  
+- Implement cross-account security monitoring  
+- Enhance alerting with Slack / PagerDuty  
 
+---
+
+## 🧠 Key Learnings
+
+- Designing event-driven security workflows  
+- Automating remediation using Lambda  
+- Integrating multiple AWS security services  
+- Building scalable cloud-native security architectures  
