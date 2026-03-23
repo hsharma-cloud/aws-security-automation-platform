@@ -139,7 +139,7 @@ A security group allows public SSH access:
 
 ---
 
-### ⚡ Lambda Remediation
+### ⚡ Lambda
 
 ![Lambda Remediation](screenshots/lambda/lambda-remediation.png)
 
@@ -163,7 +163,7 @@ A security group allows public SSH access:
 
 ---
 
-### 🌐 WAF Protection
+### 🌐 WAF
 
 ![WAF Protection](screenshots/waf/14-waf-alb-protection.png)
 ![WAF Rate Limiting](screenshots/waf/14-waf-alb-rate-limiting.png)
