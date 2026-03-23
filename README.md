@@ -19,7 +19,7 @@ The platform detects misconfigurations and automatically remediates them using A
 
 ```mermaid
 flowchart TD
-    Internet --> Shield[AWS Shield (DDoS Protection)]
+    Internet --> Shield[AWS Shield - DDoS Protection]
     Shield --> ALB[Application Load Balancer]
     ALB --> EC2[EC2 Application Layer]
 
@@ -33,3 +33,6 @@ flowchart TD
     Config --> EventBridge
     EventBridge --> Lambda[AWS Lambda Remediation]
     Lambda --> Fix[Fix Security Group]
+
+
+
