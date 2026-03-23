@@ -103,6 +103,66 @@ A security group allows public SSH access (0.0.0.0/0)
 
 ---
 
+## 🚀 How to Deploy
+
+### 📋 Prerequisites
+
+- AWS account with appropriate permissions  
+- AWS CLI configured (`aws configure`)  
+- Terraform installed (v1.x recommended)  
+
+---
+
+### ⚙️ Deployment Steps
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/hsharma-cloud/aws-security-automation-platform.git
+
+# 2. Navigate to Terraform directory
+cd aws-security-automation-platform/terraform
+
+# 3. Initialize Terraform
+terraform init
+
+# 4. Review execution plan
+terraform plan
+
+# 5. Deploy infrastructure
+terraform apply
+
+
+---
+
+### 🧪 Validation
+
+After deployment, verify the platform is working correctly:
+
+- ✅ Confirm **CloudTrail logs** are delivered to the S3 bucket  
+- ✅ Check **AWS Config rules** are evaluating resources  
+- ✅ Validate **GuardDuty findings** are generated  
+- ✅ Review **Security Hub dashboard** for aggregated alerts  
+- ✅ Ensure **EventBridge rules** are triggering properly  
+- ✅ Verify **Lambda function execution** for remediation  
+
+#### 🔥 Test Scenario (Recommended)
+
+1. Create or modify a Security Group to allow:
+   - `0.0.0.0/0` on port `22` (SSH)
+
+2. Observe:
+   - AWS Config detects non-compliance  
+   - EventBridge triggers rule  
+   - Lambda function executes  
+   - Insecure rule is removed automatically  
+
+3. Confirm:
+   - Security group is remediated  
+   - Logs are visible in CloudWatch  
+
+---
+
+
 # 📸 Screenshots (Proof of Implementation)
 
 ---
