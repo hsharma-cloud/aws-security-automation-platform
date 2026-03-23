@@ -130,8 +130,7 @@ terraform plan
 
 # 5. Deploy infrastructure
 terraform apply
-
-
+``` 
 ---
 
 ### 🧪 Validation
