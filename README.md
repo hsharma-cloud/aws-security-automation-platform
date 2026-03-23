@@ -109,8 +109,6 @@ A security group allows public SSH access:
 ## 📁 Project Structure
 
 
----
-
 ## 📸 Screenshots
 
 ### ☁️ CloudTrail & Config
