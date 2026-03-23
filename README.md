@@ -3,10 +3,36 @@
 🚀 Enterprise-grade AWS security monitoring and automated response platform built using native AWS services and Terraform.
 
 ---
+## 🏗️ Architecture Diagram
 
-## 🏗️ Architecture
-
-![Architecture](./architecture/architecture.png)
+```text
+                         Internet
+                             │
+                             ▼
+                    AWS Shield (DDoS)
+                             │
+                             ▼
+              Application Load Balancer (ALB)
+                             │
+                             ▼
+                    EC2 Application Layer
+                             │
+        ┌────────────────────┼────────────────────┐
+        │                    │                    │
+        ▼                    ▼                    ▼
+ AWS CloudTrail        AWS Inspector        AWS Config
+        │                    │                    │
+        ▼                    ▼                    ▼
+     S3 Logs            Vulnerabilities     Compliance Check
+        │                    │                    │
+        ▼                    ▼                    ▼
+     AWS Macie             (Scan)          Amazon EventBridge
+                                                   │
+                                                   ▼
+                                            AWS Lambda
+                                                   │
+                                                   ▼
+                                      Auto Remediation (SG Fix)
 
 ---
 
