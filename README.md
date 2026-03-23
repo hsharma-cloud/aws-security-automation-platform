@@ -2,7 +2,6 @@
 
 🚀 Enterprise-grade AWS security monitoring and automated response platform built using native AWS services and Terraform.
 
----
 ## 🏗️ Architecture Diagram
 
 ```text
@@ -33,8 +32,8 @@
                                                    │
                                                    ▼
                                       Auto Remediation (SG Fix)
+```
 
----
 
 ## 📌 Overview
 
