@@ -15,7 +15,35 @@ The platform detects misconfigurations and automatically remediates them using A
 
 ## 🏗️ Architecture Diagram
 
-```mermaid
+```text
+                         Internet
+                             │
+                             ▼
+                    AWS Shield (DDoS)
+                             │
+                             ▼
+              Application Load Balancer (ALB)
+                             │
+                             ▼
+                    EC2 Application Layer
+                             │
+        ┌────────────────────┼────────────────────┐
+        │                    │                    │
+        ▼                    ▼                    ▼
+ AWS CloudTrail        AWS Inspector        AWS Config
+        │                    │                    │
+        ▼                    ▼                    ▼
+     S3 Logs            Vulnerabilities     Compliance Check
+        │                    │                    │
+        ▼                    ▼                    ▼
+     AWS Macie             (Scan)          Amazon EventBridge
+                                                   │
+                                                   ▼
+                                            AWS Lambda
+                                                   │
+                                                   ▼
+                                        Auto Fix Security Group
+
 flowchart TD
     Internet --> Shield[AWS Shield - DDoS Protection]
     Shield --> ALB[Application Load Balancer]
